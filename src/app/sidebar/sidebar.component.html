@@ -18,15 +18,7 @@
           <li class="nav-item">
             <a (click)="Post()" class="nav-link" href="comment-form">Add Comment</a>
           </li>
-          <li class="nav-item">
-            <a (click)="Get()" class="nav-link" href="comment-table">Flights</a>
-          </li>
         </ul>
-        <form (submit)="onSubmit()" class="d-flex mt-3" role="search">
-          <label for="flightId">Flight ID:</label>
-          <input type="number" id="flightId" name="flightId" [(ngModel)]="flightId">
-          <button (click)="search()" class="btn btn-success" type="submit" href="comment-table">Search</button>
-        </form>
       </div>
     </div>
   </div>

@@ -4,8 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { CommentFormComponent } from './comment-form/comment-form.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '', pathMatch: 'full' },
-  { path: 'comment-table', component: CommentTableComponent },
+  { path: '', redirectTo: 'comments', pathMatch: 'full' },
+  { path: 'comments', component: CommentTableComponent },
   { path: 'comment-form', component: CommentFormComponent },
 ];
 

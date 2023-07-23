@@ -28,6 +28,11 @@ export class ApiService {
   }
 
   getFlights(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/flights`);
+    return this.http.get<any[]>(`${this.apiUrl}/comments`);
   }
+
+  getCommentsByTag(tag: string): Observable<Comment[]> {
+    return this.http.get<Comment[]>(`${this.apiUrl}/comments/tag/${tag}`);
+  }
+  
 }

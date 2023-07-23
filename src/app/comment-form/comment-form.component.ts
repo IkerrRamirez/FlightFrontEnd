@@ -13,7 +13,17 @@ export class CommentFormComponent implements OnInit {
   comment: string = '';
   userId: number | undefined;
   flightId: number | undefined;
-  tags: any[] = [];
+  newTag: string = '';
+  tags: string[] = [];
+  addedTags: string[] = [];
+
+  addTag() {
+    if (this.newTag.trim() !== '') {
+      this.tags.push(this.newTag);
+      this.addedTags.push(this.newTag);
+      this.newTag = ''; 
+    }
+  }
 
   showCommentForm: Boolean = false;
 
@@ -22,8 +32,6 @@ export class CommentFormComponent implements OnInit {
   ngOnInit(): void {
 
   }
-
-
   onSubmit() {
 
     const comment: Comment = {
@@ -34,8 +42,13 @@ export class CommentFormComponent implements OnInit {
     };
 
     this.apiService.postComment(comment).subscribe(data => {
-      alert("Comment added successfully");
+      // alert("Comment added successfully");
       this.router.navigate([""]);
+      this.comment = '';
+      this.userId = undefined;
+      this.flightId = undefined;
+      this.tags = [];
+      this.addedTags = [];
     });
   }
 }

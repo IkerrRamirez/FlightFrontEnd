@@ -1,25 +1,57 @@
-<div *ngIf="showTable" class="card">
-  <div class="card-header">
-    Comments
+<div class="comment-table-block">
+  <div class="comment-table-block-aside">
+    <form (submit)="onSubmit()" class="d-flex mt-3" role="search">
+      <select id="filterType" [(ngModel)]="filterType" name="filterType">
+        <option value="flightId">FlightId</option>
+        <option value="tag">Tag</option>
+      </select>
+    
+      <div *ngIf="filterType === 'flightId'" class="form-group">
+        <input type="number" id="flightId1" name="flightId" [(ngModel)]="flightId" style="text-align: center;">
+      </div>
+      <div *ngIf="filterType === 'tag'" class="form-group">
+        <input type="text" id="tagFilter" name="tagFilter" [(ngModel)]="tagFilter">
+      </div>
+      <button id="buttonSearch" class="btn btn-success" type="submit">Search</button>
+    </form>
+
+    <ng-container *ngIf="searchedComments.length > 0">
+      <div class="comment-table-block-aside-item" *ngFor="let comment of searchedComments" (click)="onSelectItem(comment)">
+        {{comment.comment}}
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="searchedComments.length <= 0">
+      <p id="noneComments">None Comments</p>
+    </ng-container>
+    <button class="btn btn-primary mt-3" id="showAll" (click)="showAllComents()">All Comments</button>
   </div>
-  <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th>Comment</th>
-          <th>UserId</th>
-          <th>FlightId</th>
-          <th>Tags</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let comment of comments; let i = index">
-          <th scope="row">{{ i + 1 }}</th>
-          <td>{{comment.comment}}</td>
-          <td>{{comment.userId}}</td>
-          <td>{{comment.flightId}}</td>
-          <td>{{comment.tags}}</td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="comment-table-block-table">
+    <div *ngIf="selectedComment" class="card">
+      <div class="card-header">
+        Comments
+      </div>
+      <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th>Comment</th>
+              <th>UserId</th>
+              <th>FlightId</th>
+              <th>Tags</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row"></th>
+              <td>{{selectedComment.comment}}</td>
+              <td>{{selectedComment.userId}}</td>
+              <td>{{selectedComment.flightId}}</td>
+              <td>{{selectedComment.tags}}</td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+  </div>
 </div>
+
