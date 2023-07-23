@@ -1,0 +1,28 @@
+<div class="card" style="width: 18rem;">
+  <div class="img1">
+    <img src="assets/img/airplane.png" class="card-img-top" alt="airplane Logo">
+  </div>
+  <h3>Comment</h3>
+  <div class="card-body">
+    <form>
+      <div class="form-group">
+        <label for="comment">Comment</label>
+        <input type="text" [(ngModel)]="comment" class="form-control" name="comment" id="comment">
+      </div>
+      <div class="form-group">
+        <label for="userId">UserId</label>
+        <input type="text" [(ngModel)]="userId" class="form-control" name="userId" id="userId">
+      </div>
+      <div class="form-group">
+        <label for="flightId">FlightId</label>
+        <input type="text" [(ngModel)]="flightId" class="form-control" name="flightId" id="flightId">
+      </div>
+      <div class="form-group">
+        <label for="tags">Tag</label>
+        <input type="text" [(ngModel)]="tags" class="form-control" name="tags" id="tags">
+      </div>
+      <hr>
+      <button (click)="onSubmit()" class="btn btn-danger">Save</button>
+    </form>
+  </div>
+</div>

@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+html, body { height: 100%; }
+body { 
+    margin-top: 150px; 
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
+}
+
+.card {
+    margin: 50px 10px 50px;
+}

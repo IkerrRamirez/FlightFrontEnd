@@ -1,0 +1,25 @@
+<div class="card">
+  <div class="card-header">
+    Comments
+  </div>
+  <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th>Comment</th>
+          <th>UserId</th>
+          <th>FlightId</th>
+          <th>Tags</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let comment of comments; let i = index">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{comment.comment}}</td>
+          <td>{{comment.userId}}</td>
+          <td>{{comment.flightId}}</td>
+          <td>{{comment.tags}}</td>
+        </tr>
+      </tbody>
+    </table>
+</div>
