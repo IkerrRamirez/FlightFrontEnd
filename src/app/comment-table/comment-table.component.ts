@@ -9,13 +9,14 @@ import { Component, Input, OnInit, OnChanges, EventEmitter, Output } from '@angu
 export class CommentTableComponent implements OnInit, OnChanges {
   @Input() flightId: number | undefined;
   comments: any[] = [];
+  showTable: Boolean = false;
 
   @Output() flightSelected = new EventEmitter<number>();
 
   constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
-    this.getCommentsByFlightId();
+    // this.getCommentsByFlightId();
   }
 
   ngOnChanges(): void {
@@ -27,6 +28,7 @@ export class CommentTableComponent implements OnInit, OnChanges {
       this.apiService.getCommentsByFlightId(this.flightId).subscribe(
         (comments) => {
           this.comments = comments;
+          this.showTable = true;
         },
         (error) => {
           console.error('Error fetching comments:', error);

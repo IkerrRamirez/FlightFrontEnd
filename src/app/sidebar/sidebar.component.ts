@@ -21,8 +21,6 @@ export class SidebarComponent implements OnInit {
     this.getFlights();
   }
 
-  showCommentForm: Boolean = true;
-
   Post() {
     this.router.navigate(["comment-form"]);
   }
@@ -35,20 +33,20 @@ export class SidebarComponent implements OnInit {
     this.router.navigate(["comment-table"]);
   }
 
-  onSearch(): void {
-    if (this.flightId !== undefined) {
-      this.apiService.getCommentsByFlightId(this.flightId).subscribe(
-        (comments) => {
-          this.comments = comments;
-          this.apiService.showCommentForm = false;
-          this.apiService.showCommentTable = true;
-        },
-        (error) => {
-          console.error('Error fetching comments:', error);
-        }
-      );
-    }
-  }
+  // onSearch(): void {
+  //   if (this.flightId !== undefined) {
+  //     this.apiService.getCommentsByFlightId(this.flightId).subscribe(
+  //       (comments) => {
+  //         this.comments = comments;
+  //         this.apiService.showCommentForm = false;
+  //         this.apiService.showCommentTable = true;
+  //       },
+  //       (error) => {
+  //         console.error('Error fetching comments:', error);
+  //       }
+  //     );
+  //   }
+  // }
 
   getFlights(): void {
     this.apiService.getFlights().subscribe(
@@ -61,15 +59,14 @@ export class SidebarComponent implements OnInit {
     );
   }
 
-  onFlightClick(flightId: number): void {
-    this.flightId = flightId;
-    this.flightSelected.emit(this.flightId);
-  }
+  // onFlightClick(flightId: number): void {
+  //   this.flightId = flightId;
+  //   this.flightSelected.emit(this.flightId);
+  // }
 
   onSubmit(): void {
     if (this.flightId !== undefined) {
       this.flightSelected.emit(this.flightId);
-      this.showCommentForm = false;
     }
   }
 }

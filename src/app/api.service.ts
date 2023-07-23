@@ -11,9 +11,9 @@ export class ApiService {
   public showCommentForm: boolean = true;
   public showCommentTable: boolean = false;
 
-  getAllComments() {
-    throw new Error('Method not implemented.');
-  }
+  // getAllComments() {
+  //   throw new Error('Method not implemented.');
+  // }
   private apiUrl = 'http://localhost:3000';
 
   constructor(private http: HttpClient) { }
