@@ -1,0 +1,78 @@
+{
+	"info": {
+		"_postman_id": "6a5c3514-c322-4d0e-a0e5-0f47475d553a",
+		"name": "FlightBackEnd",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "25314858-6a5c3514-c322-4d0e-a0e5-0f47475d553a"
+	},
+	"item": [
+		{
+			"name": "PostComment",
+			"id": "56ddb09d-8611-4dd5-89ac-6fde2f22278f",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"Hola\",\"dni\":\"s34353435\",\"address\":\"asdsadsadas\",\"bornDate\":\"34343\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetCommentById",
+			"id": "752d4411-9c6d-4953-aeba-1cd4aaa07222",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "GetCommentByTag",
+			"id": "8d02fcb9-1a6f-4a6f-8b8d-d2b51ed94336",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllComments",
+			"id": "47b91095-f8e2-4fa7-a804-d67e7a1bb52a",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
