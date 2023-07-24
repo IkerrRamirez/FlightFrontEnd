@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const mysql = require('mysql2');
 const moment = require('moment-timezone');
+const { v4: uuidv4 } = require('uuid');
 
 const app = express();
 const port = 3000;
@@ -24,7 +25,7 @@ const connection = mysql.createConnection(dbConfig);
 
 function resetDatabase() {
     const dropTableQuery = 'DROP TABLE IF EXISTS comments';
-    const createTableQuery = 'CREATE TABLE comments (id INT AUTO_INCREMENT PRIMARY KEY, comment VARCHAR(255), userId INT, flightId INT, tags VARCHAR(255), commentDate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP)';
+    const createTableQuery = 'CREATE TABLE comments (id VARCHAR(255) PRIMARY KEY, comment VARCHAR(255), userId INT, flightId INT, tags VARCHAR(255), commentDate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP)';
   
     connection.query(dropTableQuery, (err) => {
       if (err) {
@@ -54,6 +55,8 @@ app.post('/comments', (req, res) => {
     return res.status(400).json({ error: 'Comment, UserId, and FlightId are mandatory fields.' });
   }
 
+  const commentId = uuidv4();
+
   const commentDate = moment().tz('Europe/Madrid');
   const formattedDate = commentDate.format('YYYY-MM-DD HH:mm:ss');
 
@@ -70,8 +73,8 @@ app.post('/comments', (req, res) => {
     }
 
     // Create new Coment
-    const insertCommentQuery = 'INSERT INTO comments (comment, userId, flightId, tags) VALUES (?, ?, ?, ?)';
-    connection.query(insertCommentQuery, [comment, userId, flightId, JSON.stringify(tags), formattedDate], (error, results) => {
+    const insertCommentQuery = 'INSERT INTO comments (id, comment, userId, flightId, tags, commentDate) VALUES (?, ?, ?, ?, ?, ?)';
+    connection.query(insertCommentQuery, [commentId, comment, userId, flightId, JSON.stringify(tags), formattedDate], (error, results) => {
       if (error) {
         console.error('Error inserting the comment:', error);
         return res.status(500).json({ error: 'Error inserting the comment.' });
