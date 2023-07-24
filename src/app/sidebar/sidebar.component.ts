@@ -9,7 +9,7 @@ import { ApiService } from './../api.service';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-  flights: any[] = []; // Agrega esta propiedad para almacenar la lista de vuelos
+  flights: any[] = [];
   flightId: number | undefined;
 
   @Output() flightSelected: EventEmitter<number> = new EventEmitter<number>();
@@ -33,20 +33,6 @@ export class SidebarComponent implements OnInit {
     this.router.navigate(["comment-table"]);
   }
 
-  // onSearch(): void {
-  //   if (this.flightId !== undefined) {
-  //     this.apiService.getCommentsByFlightId(this.flightId).subscribe(
-  //       (comments) => {
-  //         this.comments = comments;
-  //         this.apiService.showCommentForm = false;
-  //         this.apiService.showCommentTable = true;
-  //       },
-  //       (error) => {
-  //         console.error('Error fetching comments:', error);
-  //       }
-  //     );
-  //   }
-  // }
 
   getFlights(): void {
     this.apiService.getFlights().subscribe(
@@ -59,10 +45,6 @@ export class SidebarComponent implements OnInit {
     );
   }
 
-  // onFlightClick(flightId: number): void {
-  //   this.flightId = flightId;
-  //   this.flightSelected.emit(this.flightId);
-  // }
 
   onSubmit(): void {
     if (this.flightId !== undefined) {
