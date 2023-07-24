@@ -39,6 +39,7 @@
               <th>UserId</th>
               <th>FlightId</th>
               <th>Tags</th>
+              <th>Date</th>
             </tr>
           </thead>
           <tbody>
@@ -48,6 +49,7 @@
               <td>{{selectedComment.userId}}</td>
               <td>{{selectedComment.flightId}}</td>
               <td>{{selectedComment.tags}}</td>
+              <td>{{ formatDate(selectedComment.commentDate) }}</td>
             </tr>
           </tbody>
         </table>

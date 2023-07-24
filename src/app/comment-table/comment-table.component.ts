@@ -1,3 +1,4 @@
+import * as moment from 'moment-timezone';
 import { ApiService } from './../api.service';
 import { Component, Input, OnInit, OnChanges, EventEmitter, Output } from '@angular/core';
 
@@ -39,36 +40,7 @@ export class CommentTableComponent implements OnInit {
     this.selectedComment = comment;
   }
 
-  /*ngOnChanges(): void {
-    this.getCommentsByFlightId();
-  }
-
-  getCommentsByFlightId(): void {
-    if (this.flightId !== undefined) {
-      this.apiService.getCommentsByFlightId(this.flightId).subscribe(
-        (comments) => {
-          this.comments = comments;
-          this.showTable = true;
-        },
-        (error) => {
-          console.error('Error fetching comments:', error);
-        }
-      );
-    }
-  }*/
-
-
-  // onSubmit(): void {
-  //   this.apiService.getCommentsByFlightId(this.flightId).subscribe(
-  //     (comments) => {
-  //       console.log('HOLA QUEM')
-  //       this.searchedComments = comments;
-  //     },
-  //     (error) => {
-  //       console.error('Error fetching comments:', error);
-  //     }
-  //   );
-  // }
+  
   
   onSubmit(): void {
     if (this.filterType === 'flightId') {
@@ -97,8 +69,13 @@ export class CommentTableComponent implements OnInit {
 
   showAllComents() {
     this.flightId = '';
+    this.tagFilter = '';
     this.selectedComment = null;
     this.searchedComments = this.allComments;
 
+  }
+
+  formatDate(date: string): string {
+    return moment.utc(date).tz('Europe/Madrid').format('YYYY-MM-DD HH:mm:ss');
   }
 }
